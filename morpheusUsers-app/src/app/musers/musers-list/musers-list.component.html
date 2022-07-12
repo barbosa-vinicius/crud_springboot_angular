@@ -1,0 +1,59 @@
+<h3>Usuários</h3>
+<ol class="breadcrumb">
+    <li class="breadcrumb-item active">Registros</li>
+</ol>
+<div class="col-md-12">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="alert alert-danger" role="alert" *ngIf="error == true">
+                Ocorreu um erro ao buscar os usuários!
+            </div>
+        </div>
+    </div>
+    <div class="row justify-content-between">
+        <div class="col-md-4 col-sm-6">
+            <button class="btn btn-primary" routerLink="/cadastro">
+                <i class="fa fa-plus"></i>
+                Novo
+            </button>
+        </div>
+        <div class="col-md-4 col-sm-6">
+            <input matInput (keyup)="applyFilter($event)" class="form-control" placeholder="Digite um nome" #input />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+              
+            <table mat-table [dataSource]="dataSource" class="table table-condensed table-hover">
+            
+            <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef> ID </th>
+                <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+            </ng-container>
+            
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef> Nome </th>
+                <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+            </ng-container>
+            
+            <ng-container matColumnDef="cpf">
+                <th mat-header-cell *matHeaderCellDef> CPF </th>
+                <td mat-cell *matCellDef="let element"> {{element.cpf}} </td>
+            </ng-container>
+            
+            <ng-container matColumnDef="registrationDate">
+                <th mat-header-cell *matHeaderCellDef> Data de Cadastro </th>
+                <td mat-cell *matCellDef="let element"> {{element.registrationDate}} </td>
+            </ng-container>
+            
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            
+            <tr class="mat-row" *matNoDataRow>
+                <td class="mat-cell" colspan="4">Nenhum usuário encontrado para o filtro: "{{input.value}}"</td>
+            </tr>
+            </table>
+              
+        </div>
+    </div>
+</div>

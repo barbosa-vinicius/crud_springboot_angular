@@ -1,0 +1,56 @@
+<h3>Usuários</h3>
+<ol class="breadcrumb">
+    <li class="breadcrumb-item active">Cadastro</li>
+</ol>
+<div class="col-md-12">
+    <form #clientForm="ngForm" (ngSubmit)="onSubmit()">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="alert alert-success" role="alert" *ngIf="success == true">
+                    Usuário salvo/atualizado com sucesso!
+                </div>
+                <div class="alert alert-danger" role="alert" *ngFor="let error of errors">
+                    {{ error }}
+                </div>
+            </div>
+        </div>
+        <div class="row" *ngIf="muser.id">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>ID:</label>
+                    <input type="text" class="form-control" disabled="true" [ngModel]="muser.id" name="id"/>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Data de Cadastro:</label>
+                    <input type="text" class="form-control" disabled="true" [ngModel]="muser.registrationDate" name="registrationDate"/>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Nome: *</label>
+                    <input type="text" class="form-control" required disabled="{{success}}" [(ngModel)]="muser.name" name="name"/>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>CPF: *</label>
+                    <input type="text" class="form-control" required disabled="{{success}}" [(ngModel)]="muser.cpf" name="cpf"/>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-md-4">
+                <button type="submit" class="btn btn-primary" [disabled]="success ? true : null" > 
+                    <i class="fa fa-save"></i> Salvar
+                </button>
+                <button type="button" class="btn btn-outline-primary ms-1" routerLink="/"> 
+                    <i class="fa fa-arrow-alt-circle-left"></i> Voltar
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
